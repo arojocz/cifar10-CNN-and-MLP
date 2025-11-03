@@ -1,0 +1,17 @@
+# Ignorar todos los archivos de pesos y resultados
+*.pth
+*.pt
+
+# Ignorar la carpeta de datos (CIFAR-10)
+data/
+
+# Ignorar archivos de caché de Python
+__pycache__/
+*.pyc
+
+# Ignorar archivos de entorno (si usas)
+.venv/
+venv/
+
+# Ignorar archivos de macOS
+.DS_Store
