@@ -21,4 +21,3 @@ Characteristics: An analysis of translation invariance, number of parameters and
 
 ## Document
 [Download PDF](cnn_luisrojo.pdf)
-https://arojocz.github.io/cifar10-CNN-and-MLP/cnn_luisrojo.pdf
