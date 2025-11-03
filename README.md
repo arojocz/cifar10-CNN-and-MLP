@@ -13,8 +13,11 @@ Efficiency: Total trainable parameters and training/test time.
 
 Characteristics: An analysis of translation invariance, number of parameters and learning curves.
 
-## How execute
+## Execution
 1. Clone this repository.
 2. Install dependencies: pip install -r requirements.txt
 3. Run any of the training scripts in the src/ folder (both MLP and CNN), for example: python src/CNN_exp1.py; python src/MLP_exp1.py.
 4. Once the result files (.pth) are generated, open and run the notebooks/cifar.ipynb notebook to see the comparative analysis.
+
+## Document
+[Download PDF](cnn_luisrojo.pdf)
