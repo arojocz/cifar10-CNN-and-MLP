@@ -245,8 +245,6 @@ if __name__ == '__main__':
     print("-" * 30)
     
     # --- 7. Save Results for Notebook ---
-    
-    # *** THIS IS THE UNIQUE FILENAME FOR THIS EXPERIMENT ***
     results_filename = 'results_CNN_exp3.pth' 
     
     print(f"Saving results to '{results_filename}'...")
@@ -266,7 +264,6 @@ if __name__ == '__main__':
         'classes': classes
     }
 
-    # Use 'weights_only=False' (or remove it) to save data
     torch.save(results_to_save, results_filename) 
     print(f"Results saved to '{results_filename}'.")
     print("Training script finished.")

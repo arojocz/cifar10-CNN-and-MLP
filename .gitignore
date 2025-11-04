@@ -14,4 +14,6 @@ __pycache__/
 venv/
 
 # Ignorar archivos de macOS
+.DS_Store*.zip
+
 .DS_Store

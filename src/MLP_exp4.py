@@ -11,7 +11,7 @@ from torchvision.transforms import functional as F # <-- Importante
 import time
 import numpy as np
 from sklearn.metrics import classification_report, confusion_matrix
-import os # Necesario
+import os
 
 # --- 1. Definición del Modelo MLP (La que tú especificaste) ---
 class MLP(nn.Module):
@@ -25,9 +25,9 @@ class MLP(nn.Module):
         self.layers = nn.Sequential(
             nn.Linear(input_features, 512),
             nn.ReLU(),
-            nn.Linear(512, 256), # <-- Tu arquitectura
+            nn.Linear(512, 256),
             nn.ReLU(),
-            nn.Linear(256, 128),  # <-- Tu arquitectura
+            nn.Linear(256, 128), 
             nn.ReLU(),
             nn.Linear(128, num_classes)
         )
@@ -72,13 +72,13 @@ if __name__ == '__main__':
         transforms.ToTensor(),
     ])
     
-    # 2. Transformación de TEST/VALIDACIÓN (NORMAL)
+    # 2. Transformación de TEST/VALIDACIÓN
     transform_test_normal = transforms.Compose([
         transforms.ToTensor(),
     ])
     
     # 3. Transformación de TEST (TRASLADADO)
-    SHIFT_PIXELS = 6 # (Usa el mismo shift que en tu script de CNN)
+    SHIFT_PIXELS = 5
     transform_test_shifted = transforms.Compose([
         transforms.Lambda(lambda img: F.affine(
             img, 

@@ -11,7 +11,7 @@ from torchvision.transforms import functional as F
 import time
 import numpy as np
 from sklearn.metrics import classification_report, confusion_matrix
-import os # Necesario
+import os 
 
 # --- 1. Definición del Modelo CNN ---
 class SimpleCNN(nn.Module):
@@ -98,7 +98,7 @@ if __name__ == '__main__':
     ])
     
     # 3. Transformación de TEST (TRASLADADO)
-    SHIFT_PIXELS = 5 # Tu valor de 5 píxeles
+    SHIFT_PIXELS = 5 # 5 píxeles
     transform_test_shifted = transforms.Compose([
         transforms.Lambda(lambda img: F.affine(
             img, 
@@ -234,13 +234,13 @@ if __name__ == '__main__':
             torch.save(model.state_dict(), best_model_path)
             selected_epoch = epoch + 1
             
-    # --- CÁLCULO DE TIEMPO TOTAL (CORREGIDO) ---
+    # --- CÁLCULO DE TIEMPO TOTAL---
     total_training_time = time.time() - total_start_time
 
     print(f"\nEntrenamiento finalizado en {total_training_time/60:.2f} minutos.")
     print(f"Mejor modelo guardado en epoch {selected_epoch}")
 
-    # --- 6. Evaluación Final (CORREGIDO) ---
+    # --- 6. Evaluación Final---
     print(f"\nCargando el mejor modelo ('{best_model_path}') para la evaluación final...")
     model.load_state_dict(torch.load(best_model_path))
     model.eval()
@@ -250,7 +250,7 @@ if __name__ == '__main__':
     all_labels_normal = []
     all_predictions_normal = []
     
-    start_inference_time_normal = time.time() # <-- AÑADIDO
+    start_inference_time_normal = time.time()
     with torch.no_grad():
         for inputs, labels in test_loader_normal: 
             inputs, labels = inputs.to(device), labels.to(device)
@@ -258,18 +258,18 @@ if __name__ == '__main__':
             _, predicted = torch.max(outputs.data, 1)
             all_predictions_normal.extend(predicted.cpu().numpy())
             all_labels_normal.extend(labels.cpu().numpy())
-    total_inference_time_normal = time.time() - start_inference_time_normal # <-- AÑADIDO
+    total_inference_time_normal = time.time() - start_inference_time_normal
 
     test_accuracy_normal = 100 * (np.array(all_predictions_normal) == np.array(all_labels_normal)).sum() / len(all_labels_normal)
     report_normal_dict = classification_report(all_labels_normal, all_predictions_normal, target_names=classes, output_dict=True) # <-- AÑADIDO
     report_normal_str = classification_report(all_labels_normal, all_predictions_normal, target_names=classes)
     
-    # --- Evaluación 2: Test Set TRASLADADO (Experimento) ---
+    # --- Evaluación 2: Test Set TRASLADADO ---
     print("\nEjecutando evaluación en Test Set TRASLADADO...")
     all_labels_shifted = []
     all_predictions_shifted = []
 
-    start_inference_time_shifted = time.time() # <-- AÑADIDO
+    start_inference_time_shifted = time.time()
     with torch.no_grad():
         for inputs, labels in test_loader_shifted:
             inputs, labels = inputs.to(device), labels.to(device)
@@ -277,7 +277,7 @@ if __name__ == '__main__':
             _, predicted = torch.max(outputs.data, 1)
             all_predictions_shifted.extend(predicted.cpu().numpy())
             all_labels_shifted.extend(labels.cpu().numpy())
-    total_inference_time_shifted = time.time() - start_inference_time_shifted # <-- AÑADIDO
+    total_inference_time_shifted = time.time() - start_inference_time_shifted
 
     test_accuracy_shifted = 100 * (np.array(all_predictions_shifted) == np.array(all_labels_shifted)).sum() / len(all_labels_shifted)
     report_shifted_dict = classification_report(all_labels_shifted, all_predictions_shifted, target_names=classes, output_dict=True) # <-- AÑADIDO
@@ -295,13 +295,13 @@ if __name__ == '__main__':
     print(report_shifted_str)
     print("="*40)
 
-    # --- 7. Guardar Resultados para el Notebook (CORREGIDO) --- 
+    # --- 7. Guardar Resultados para el Notebook --- 
     print("Guardando resultados para el análisis en el notebook...")
     
-    results_filename = 'results_CNN_exp4.pth' # <-- Nombre de archivo
+    results_filename = 'results_CNN_exp4.pth'
 
     results_to_save = {
-        'experiment_name': 'CNN (Baseline) Invariance', # <-- Nombre
+        'experiment_name': 'CNN (Baseline) Invariance', 
         'model_architecture': 'CNN (32-64-128)',
         'history': history,
         'total_params': total_params,
@@ -320,9 +320,9 @@ if __name__ == '__main__':
         'all_labels_shifted': all_labels_shifted,
         'all_predictions_shifted': all_predictions_shifted,
         'test_accuracy_shifted': test_accuracy_shifted,
-        'classification_report_dict_shifted': report_shifted_dict, # <-- AÑADIDO
-        'classification_report_str_shifted': report_shifted_str,   # <-- Renombrado
-        'total_inference_time_sec_shifted': total_inference_time_shifted # <-- AÑADIDO
+        'classification_report_dict_shifted': report_shifted_dict, 
+        'classification_report_str_shifted': report_shifted_str,   
+        'total_inference_time_sec_shifted': total_inference_time_shifted 
     }
 
     torch.save(results_to_save, results_filename)

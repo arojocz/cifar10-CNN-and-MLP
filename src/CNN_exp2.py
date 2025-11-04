@@ -80,7 +80,7 @@ if __name__ == '__main__':
     np.random.seed(RANDOM_SEED)
     if device == "cuda":
         torch.cuda.manual_seed_all(RANDOM_SEED)
-    elif device == "mps": # <-- FIX for your Mac
+    elif device == "mps":
         torch.mps.manual_seed(RANDOM_SEED)
 
     # --- 3. Data Preparation ---
@@ -245,8 +245,6 @@ if __name__ == '__main__':
     print("-" * 30)
     
     # --- 7. Save Results for Notebook ---
-    
-    # *** THIS IS THE UNIQUE FILENAME FOR THIS EXPERIMENT ***
     results_filename = 'results_CNN_exp2.pth' 
     
     print(f"Saving results to '{results_filename}'...")
@@ -266,7 +264,6 @@ if __name__ == '__main__':
         'classes': classes
     }
 
-    # Use 'weights_only=False' (or remove it) to save data
     torch.save(results_to_save, results_filename) 
     print(f"Results saved to '{results_filename}'.")
     print("Training script finished.")

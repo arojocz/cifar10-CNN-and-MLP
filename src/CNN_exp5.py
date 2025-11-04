@@ -78,7 +78,7 @@ if __name__ == '__main__':
     np.random.seed(RANDOM_SEED)
     if device == "cuda":
         torch.cuda.manual_seed_all(RANDOM_SEED)
-    elif device == "cpu": # <-- FIX for your Mac
+    elif device == "cpu": 
         torch.mps.manual_seed(RANDOM_SEED)
 
     # --- 3. Data Preparation ---
@@ -146,7 +146,7 @@ if __name__ == '__main__':
         'epoch_time': []
     }
     best_val_loss = float('inf') 
-    best_model_path = 'best_cnn_model_exp5.pth' # Unique model name
+    best_model_path = 'best_cnn_model_exp5.pth'
 
     print(f"\nStarting training for {NUM_EPOCHS} epochs...")
     total_start_time = time.time() # Start total timer
@@ -243,8 +243,6 @@ if __name__ == '__main__':
     print("-" * 30)
     
     # --- 7. Save Results for Notebook ---
-    
-    # *** THIS IS THE UNIQUE FILENAME FOR THIS EXPERIMENT ***
     results_filename = 'results_CNN_exp5.pth' 
     
     print(f"Saving results to '{results_filename}'...")
@@ -264,7 +262,6 @@ if __name__ == '__main__':
         'classes': classes
     }
 
-    # Use 'weights_only=False' (or remove it) to save data
     torch.save(results_to_save, results_filename) 
     print(f"Results saved to '{results_filename}'.")
     print("Training script finished.")

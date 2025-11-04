@@ -10,7 +10,7 @@ from sklearn.model_selection import train_test_split
 import time
 import numpy as np
 from sklearn.metrics import classification_report, confusion_matrix
-import os # Necessary for os.path.exists
+import os
 
 # --- 1. MLP Model Definition ---
 class MLP(nn.Module):
@@ -58,7 +58,7 @@ if __name__ == '__main__':
     np.random.seed(RANDOM_SEED)
     if device == "cuda":
         torch.cuda.manual_seed_all(RANDOM_SEED)
-    elif device == "mps": # <-- FIX for your Mac
+    elif device == "mps":
         torch.mps.manual_seed(RANDOM_SEED)
 
     # --- 3. Data Preparation ---

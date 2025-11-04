@@ -52,11 +52,10 @@ if __name__ == '__main__':
     np.random.seed(RANDOM_SEED)
     if device == "cuda":
         torch.cuda.manual_seed_all(RANDOM_SEED)
-    elif device == "cpu": # <-- FIX for your Mac
+    elif device == "cpu": 
         torch.mps.manual_seed(RANDOM_SEED)
 
     # --- 3. Data Preparation ---
-    # Data augmentation is CRUCIAL for the MLP
     transform_train = transforms.Compose([
         #transforms.RandomCrop(32, padding=4),
         #transforms.RandomHorizontalFlip(),
@@ -219,8 +218,6 @@ if __name__ == '__main__':
     print("-" * 30)
 
     # --- 7. Save Results for Notebook ---
-    
-    # *** THIS IS THE UNIQUE FILENAME FOR THIS EXPERIMENT ***
     results_filename = 'results_MLP_exp5.pth'
     
     print(f"Saving results to '{results_filename}'...")
